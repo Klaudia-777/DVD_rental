@@ -19,21 +19,21 @@ int main() {
 
 
     RentalService rent;
-    rent.movieBase.addToBase(movie1);
-    rent.movieBase.addToBase(movie2);
-    rent.movieBase.addToBase(movie3);
+    rent.getMovieBase().addToBase(movie1);
+    rent.getMovieBase().addToBase(movie2);
+    rent.getMovieBase().addToBase(movie3);
 
     rent.filterGenre(Comedy);
 
     rent.rentDVD(1);
 
-    cout << rent.movieBase.getRentedDVDs().size() << endl;
-    cout << rent.movieBase.getBase().size() << endl;
+    cout << rent.getMovieBase().getRentedDVDs().size() << endl;
+    cout << rent.getMovieBase().getBase().size() << endl;
 
     rent.returnDVD(1);
 
-    cout << rent.movieBase.getRentedDVDs().size() << endl;
-    cout << rent.movieBase.getBase().size() << endl;
+    cout << rent.getMovieBase().getRentedDVDs().size() << endl;
+    cout << rent.getMovieBase().getBase().size() << endl;
 
 
     return 0;

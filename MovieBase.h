@@ -19,7 +19,6 @@ private:
     std::map<int, DVD> rentedDVDs;
 
 public:
-    MovieBase(std::map<int, DVD> base);
 
     MovieBase();
 
@@ -33,9 +32,8 @@ public:
 
     std::map<int, DVD> getRentedDVDs() const;
 
-    std::map<int, DVD> getBase();
+    std::map<int, DVD> getBase() const;
 
-    MovieBase &operator=(MovieBase movieBase);
 };
 
 

@@ -4,17 +4,14 @@
 
 #include "DVD.h"
 
-
-static int tmpIncrementer = 0; // tu nie wymyslilam inaczej :/
+static int incrementer=0;
 
 DVD::DVD(Status status, Genre genre, std::string title, double price) {
     this->status = status;
     this->genre = genre;
     this->title = title;
     this->price = price;
-    incrementer = tmpIncrementer;
-    id = incrementer;
-    setIncrementer(++tmpIncrementer);
+    id = incrementer++;
 }
 
 Status DVD::getStatus() {
@@ -52,6 +49,6 @@ bool DVD::operator==(const DVD &rhs) const {
            price == rhs.price;
 }
 
-void DVD::setIncrementer(int incrementer) {
-    DVD::incrementer = incrementer;
-}
+//void DVD::setIncrementer(int incrementer) {
+//    DVD::incrementer = incrementer;
+//}

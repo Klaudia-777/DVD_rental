@@ -7,34 +7,24 @@
 
 MovieBase::MovieBase() {}
 
-MovieBase::MovieBase(std::map<int, DVD> base) {
-    this->base = base;
-}
-
 void MovieBase::addToBase(DVD movie) {
     int id = movie.getId();
     base.emplace(std::make_pair(id, movie));
 }
 
 void MovieBase::saveRentedDVDs(int id) {
-    for (auto it = base.begin(); it != base.end(); ++it) {
-        if (it->first == id) rentedDVDs.emplace(std::make_pair(it->first, it->second));
-    }
+   rentedDVDs.emplace(std::make_pair(id, base.at(id)));
 }
 
 void MovieBase::removeFromBase(int id) {
-    for (auto it = base.begin(); it != base.end(); ++it) {
-        if (it->first == id) base.erase(it);
-    }
+        base.erase(id);
 }
 
 void MovieBase::removeFromRentedDVDs(int id) {
-    for (auto it = rentedDVDs.begin(); it != rentedDVDs.end(); ++it) {
-        if (it->first == id) rentedDVDs.erase(it);
-    }
+       rentedDVDs.erase(id);
 }
 
-std::map<int, DVD> MovieBase::getBase() {
+std::map<int, DVD> MovieBase::getBase() const{
     return base;
 }
 
@@ -42,11 +32,6 @@ std::map<int, DVD> MovieBase::getRentedDVDs() const {
     return rentedDVDs;
 }
 
-MovieBase &MovieBase::operator=(MovieBase movieBase) {
-    base = movieBase.getBase();
-    rentedDVDs = movieBase.getRentedDVDs();
-    return *this;
-}
 
 
 

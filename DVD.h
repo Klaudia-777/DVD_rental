@@ -16,7 +16,6 @@ private:
     Genre genre;
     std::string title;
     double price;
-    int incrementer;
     int id = {};
 
 public:
@@ -33,8 +32,6 @@ public:
     double getPrice();
 
     void setPrice(double price);
-
-    void setIncrementer(int incrementer);
 
     bool operator==(const DVD &rhs) const;
 

@@ -12,12 +12,9 @@
 
 class RentalService {
 
-    std::map<int, DVD> base = {};
-
-public:
     MovieBase movieBase;
 
-    RentalService();
+public:
 
     void rentDVD(int id);
 
@@ -27,7 +24,7 @@ public:
 
     std::vector<std::pair<int, DVD>> filterGenre(Genre genre);
 
-
+    MovieBase &getMovieBase();
 
 };
 

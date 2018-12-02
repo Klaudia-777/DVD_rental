@@ -5,13 +5,6 @@
 #include <iostream>
 #include "RentalService.h"
 
-// tu cos nie tak (????)
-RentalService::RentalService() {
-    MovieBase actualMovieBase(base);
-    movieBase = actualMovieBase;
-}
-
-
 void RentalService::displayAvailableDVDs(std::vector<std::pair<int, DVD>> vec) {
     for (std::pair<int, DVD> it : vec)
         std::cout << it.second.getTitle() << "\t" << it.first << std::endl;
@@ -55,6 +48,10 @@ void RentalService::returnDVD(int id) {
     }
     movieBase.removeFromRentedDVDs(id);
 
+}
+
+MovieBase &RentalService::getMovieBase(){
+    return movieBase;
 }
 
 
