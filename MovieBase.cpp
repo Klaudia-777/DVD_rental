@@ -12,24 +12,33 @@ void MovieBase::addToBase(DVD movie) {
     base.emplace(std::make_pair(id, movie));
 }
 
-void MovieBase::saveRentedDVDs(int id) {
-   rentedDVDs.emplace(std::make_pair(id, base.at(id)));
-}
 
 void MovieBase::removeFromBase(int id) {
-        base.erase(id);
+    base.erase(id);
 }
 
-void MovieBase::removeFromRentedDVDs(int id) {
-       rentedDVDs.erase(id);
+std::vector<DVD> MovieBase::findByStatus(Status status) {
+    std::vector<DVD> foundMovies;
+    for (auto &it : base) {
+        if ((it.second).getStatus() == status) {
+            foundMovies.emplace_back(it.second);
+        }
+    }
+    return foundMovies;
 }
 
-std::map<int, DVD> MovieBase::getBase() const{
-    return base;
+std::vector<DVD> MovieBase::findByGenre(Genre genre) {
+    std::vector<DVD> foundMovies;
+    for (auto &it : base) {
+        if ((it.second).getGenre() == genre) {
+            foundMovies.emplace_back(it.second);
+        }
+    }
+    return foundMovies;
 }
 
-std::map<int, DVD> MovieBase::getRentedDVDs() const {
-    return rentedDVDs;
+DVD &MovieBase::findById(int id) {
+    return base.at(id);
 }
 
 

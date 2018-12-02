@@ -16,7 +16,6 @@ class MovieBase {
 
 private:
     std::map<int, DVD> base;
-    std::map<int, DVD> rentedDVDs;
 
 public:
 
@@ -26,13 +25,12 @@ public:
 
     void removeFromBase(int id);
 
-    void removeFromRentedDVDs(int id);
+    std::vector<DVD> findByStatus(Status status);
 
-    void saveRentedDVDs(int id);
+    std::vector<DVD> findByGenre(Genre genre);
 
-    std::map<int, DVD> getRentedDVDs() const;
+    DVD &findById(int id);
 
-    std::map<int, DVD> getBase() const;
 
 };
 

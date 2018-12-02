@@ -27,14 +27,13 @@ int main() {
 
     rent.rentDVD(1);
 
-    cout << rent.getMovieBase().getRentedDVDs().size() << endl;
-    cout << rent.getMovieBase().getBase().size() << endl;
+    cout << rent.getMovieBase().findByStatus(booked).size() << endl;
+    cout << rent.getMovieBase().findByStatus(inStore).size() << endl;
 
     rent.returnDVD(1);
 
-    cout << rent.getMovieBase().getRentedDVDs().size() << endl;
-    cout << rent.getMovieBase().getBase().size() << endl;
-
+    cout << rent.getMovieBase().findByStatus(booked).size() << endl;
+    cout << rent.getMovieBase().findByStatus(inStore).size() << endl;
 
     return 0;
 }

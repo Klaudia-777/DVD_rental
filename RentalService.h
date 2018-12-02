@@ -20,9 +20,9 @@ public:
 
     void returnDVD(int id);
 
-    void displayAvailableDVDs(std::vector<std::pair<int, DVD>> vec);
+    void displayAvailableDVDs(std::vector<DVD> vec);
 
-    std::vector<std::pair<int, DVD>> filterGenre(Genre genre);
+    std::vector<DVD> filterGenre(Genre genre);
 
     MovieBase &getMovieBase();
 

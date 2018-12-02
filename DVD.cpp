@@ -4,7 +4,7 @@
 
 #include "DVD.h"
 
-static int incrementer=0;
+static int incrementer = 0;
 
 DVD::DVD(Status status, Genre genre, std::string title, double price) {
     this->status = status;
