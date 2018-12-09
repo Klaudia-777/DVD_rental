@@ -25,6 +25,8 @@ public:
 
     void displayAvailableDVDs(std::vector<DVD> vec);
 
+    void display(bool which);
+
     std::vector<DVD> filterGenre(Genre genre);
 
     MovieBase &getMovieBase();

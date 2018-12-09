@@ -14,8 +14,8 @@ class Client {
 private:
     std::string name;
     std::string surname;
+    std::string information;
     std::map<int, int> rented; //------------id DVD, czas trzymania
-    bool keepingTooLong;
     int id;
     double toPayForKeeping;
 
@@ -30,11 +30,15 @@ public:
 
     std::map<int, int> &getRented();
 
-    void setKeepingTooLong(bool keepingTooLong);
-
     void setToPayForKeeping(double toPayForKeeping);
 
+    void addPayment(double toPay);
+
+    void setInformation(const std::string &information);
+
     friend std::ostream &operator<<(std::ostream &os, const Client &client);
+
+    double getToPayForKeeping() const;
 };
 
 

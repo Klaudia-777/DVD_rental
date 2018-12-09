@@ -18,7 +18,7 @@ void ClientBase::removeFromBase(int id) {
     base.erase(id);
 }
 
- std::map<int, Client> &ClientBase::getBase(){
+std::map<int, Client> &ClientBase::getBase() {
     return base;
 }
 
@@ -27,7 +27,7 @@ Client &ClientBase::findById(int id) {
 }
 
 void ClientBase::newClient() {
-    std ::cout << "-------~NEW CLIENT~------" << std::endl;
+    std::cout << "-------~NEW CLIENT~------" << std::endl;
     std::string name, surname;
     std::cout << "Enter client's name:" << std::endl;
     std::cin >> name;
@@ -40,17 +40,16 @@ void ClientBase::newClient() {
 
 void ClientBase::rentDVD(int DVDId) {
     bool isNew;
-    std::cout << "New client?" << std::endl;
+    std::cout << "New client?" << std::endl;           //----------------enter 1 -> new client or 0 -> client already in base
     std::cin >> isNew;
     if (isNew) newClient();
-    int id=0;
-    std ::cout << "-------~RENT DVD MENU~------" << std::endl;
-    std::cout << "Enter id:" << std::endl;
+    int id = 0;
+    std::cout << "-------~RENT DVD MENU~------" << std::endl;
+    std::cout << "Enter client's id:" << std::endl;
     std::cin >> id;
     if (base.find(id) != base.end()) {
         base.at(id).getRented().emplace(std::make_pair(DVDId, 0));
-        std ::cout << "-------~CLIENT'S DATA~------" << std::endl;
-        displayClientsData(id);
+        showClientsData(id);
 
     } else {
         std::cout << "There's no such client" << std::endl;
@@ -59,26 +58,30 @@ void ClientBase::rentDVD(int DVDId) {
 
 }
 
-void ClientBase::returnDVD(int DVDId) {
-    std ::cout << "------~RETURN DVD MENU~-----" << std::endl;
+bool ClientBase::returnDVD(int DVDId) {
+    std::cout << "------~RETURN DVD MENU~-----" << std::endl;
     int id;
-    std::cout << "Enter id:" << std::endl;
+    std::cout << "Enter client's id:" << std::endl;
     std::cin >> id;
-    if(base.find(id)==base.end()) {
+    if (base.find(id) == base.end()) {
         std::cout << "There's no such client" << std::endl;
-        returnDVD(DVDId);
-    }
-    else {
+        return false;
+    } else if (base.find(id) != base.end() &&
+               getBase().at(id).getRented().find(DVDId) == getBase().at(id).getRented().end()) {
+        std::cout << "This client's rented-DVDs-base has no such DVD." << std::endl;
+        return false;
+    } else {
         findById(id).getRented().erase(DVDId);
-        findById(id).setKeepingTooLong(false);
         findById(id).setToPayForKeeping(0);
-        std::cout << "-------~CLIENT'S DATA~------" << std::endl;
+        findById(id).setInformation(" ");
         std::cout << getBase().at(id) << std::endl;
+        return true;
     }
 }
 
-void ClientBase::displayClientsData(int id) {
-    std::cout << getBase().at(id) << std::endl;
+void ClientBase::showClientsData(int id) {
+    if (base.find(id) != base.end()) std::cout << getBase().at(id) << std::endl;
+    else std::cout << "There's no such client." << std::endl;
 }
 
 

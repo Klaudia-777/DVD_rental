@@ -29,6 +29,8 @@ public:
 
     std::vector<DVD> findByGenre(Genre genre);
 
+    const std::map<int, DVD> &getBase() const;
+
     DVD &findById(int id);
 
 

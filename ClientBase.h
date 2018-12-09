@@ -13,7 +13,6 @@
 class ClientBase {
 private:
     std::map<int, Client> base;    // ----------int -client's id
-   // MovieBase movieBase;
 public:
 
     ClientBase();
@@ -26,9 +25,9 @@ public:
 
     void rentDVD(int DVDId);
 
-    void returnDVD(int DVDId);
+    bool returnDVD(int DVDId);
 
-    void displayClientsData(int id);
+    void showClientsData(int id);
 
     Client &findById(int id);
 

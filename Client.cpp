@@ -12,8 +12,8 @@ Client::Client(const std::string &name, const std::string &surname) : name(name)
     this->name = name;                                                                      //-------pozniej pytamy o id i szukamy w bazie
     this->surname = surname;
     rented = {};
-    keepingTooLong = false;
     toPayForKeeping = 0.0;
+    information = "";
     id = incrementer++;
 }
 
@@ -34,25 +34,32 @@ const std::string &Client::getSurname() const {
 }
 
 std::ostream &operator<<(std::ostream &os, const Client &client) {
+    os << "-------~CLIENT'S DATA~------" << std::endl;
     os << "Client's id: " << client.id << std::endl << "Name: " << client.name << std::endl << "Surname: "
-       << client.surname
-       << std::endl;
-    os << "Rented DVDs: " << std::endl << std:: endl;
+       << client.surname << std::endl << client.information << std::endl;
+    os << "Rented DVDs: " << std::endl;
     for (auto i : client.rented) {
         os << "DVDs id: " << i.first << " " << "Rented for: " << i.second << std::endl;
     }
     os << std::endl;
-    os << "KeepingTooLong: " << client.keepingTooLong << std::endl << "toPayForKeeping: "
-       << client.toPayForKeeping << std::endl;
+    os << "toPayForKeeping: "
+       << client.toPayForKeeping << std::endl << "-----------------------------";
     return os;
 }
 
 
-
-void Client::setKeepingTooLong(bool keepingTooLong) {
-    Client::keepingTooLong = keepingTooLong;
+void Client::setToPayForKeeping(double toPayForKeeping) {
+    this->toPayForKeeping = toPayForKeeping;
 }
 
-void Client::setToPayForKeeping(double toPayForKeeping) {
-    Client::toPayForKeeping += toPayForKeeping;
+void Client::addPayment(double toPay) {
+    this->toPayForKeeping += toPay;
+}
+
+double Client::getToPayForKeeping() const {
+    return toPayForKeeping;
+}
+
+void Client::setInformation(const std::string &information) {
+    Client::information = information;
 }

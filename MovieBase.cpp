@@ -2,7 +2,7 @@
 // Created by klaudia on 01.12.18.
 //
 
-#include <bits/streambuf_iterator.h>
+#include <iostream>
 #include "MovieBase.h"
 
 MovieBase::MovieBase() {}
@@ -39,6 +39,10 @@ std::vector<DVD> MovieBase::findByGenre(Genre genre) {
 
 DVD &MovieBase::findById(int id) {
     return base.at(id);
+}
+
+const std::map<int, DVD> &MovieBase::getBase() const {
+    return base;
 }
 
 

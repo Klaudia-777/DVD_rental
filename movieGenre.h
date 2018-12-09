@@ -6,6 +6,8 @@
 #define DVD_RENTAL_MOVIEGENRE_H
 
 
+#include <string>
+
 enum Genre {
     Action,
     Adventure,
@@ -14,7 +16,6 @@ enum Genre {
     Drama,
     Fantasy,
     Historical,
-    Historical_fiction,
     Horror,
     Magical_realism,
     Mystery,
