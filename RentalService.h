@@ -9,16 +9,19 @@
 #include "DVD.h"
 #include "MovieBase.h"
 #include "movieGenre.h"
+#include "ClientBase.h"
 
 class RentalService {
 
     MovieBase movieBase;
-
+    ClientBase clientBase;
 public:
 
     void rentDVD(int id);
 
     void returnDVD(int id);
+
+    void countTimeAndPayments();
 
     void displayAvailableDVDs(std::vector<DVD> vec);
 
@@ -26,6 +29,7 @@ public:
 
     MovieBase &getMovieBase();
 
+    ClientBase &getClientBase();
 };
 
 
