@@ -1,10 +1,9 @@
-//
-// Created by klaudia on 05.12.18.
-//
+/*
+ * This class implements basic operations on clients database.
+ */
 
 #ifndef DVD_RENTAL_CLIENTBASE_H
 #define DVD_RENTAL_CLIENTBASE_H
-
 
 #include <map>
 #include "Client.h"
@@ -12,7 +11,7 @@
 
 class ClientBase {
 private:
-    std::map<int, Client> base;    // ----------int -client's id
+    std::map<int, Client> base;         // database of clients implemented as a map where key - client's id and value - corresponding Client object                                                                            //
 public:
 
     ClientBase();
@@ -32,8 +31,6 @@ public:
     Client &findById(int id);
 
     std::map<int, Client> &getBase();
-
-
 };
 
 

@@ -1,6 +1,6 @@
-//
-// Created by klaudia on 01.12.18.
-//
+/*
+ *  Domain class representing DVD.
+ */
 
 #ifndef DVD_RENTAL_DVD_H
 #define DVD_RENTAL_DVD_H
@@ -9,17 +9,18 @@
 #include "Status.h"
 #include <string>
 
-
 class DVD {
 private:
     Status status;
     Genre genre;
     std::string title;
-    double price;
+    int price;
     int id = {};
 
 public:
-    DVD(Status status, Genre genre, std::string title, double price);
+    DVD(Status status, Genre genre, std::string title, int price,int id);
+
+    DVD();
 
     Status getStatus();
 
@@ -29,14 +30,19 @@ public:
 
     std::string getTitle();
 
-    double getPrice();
+    int getPrice();
 
-    void setPrice(double price);
+    void setPrice(int price);
+
+    void setGenre(Genre genre);
+
+    void setTitle(const std::string &title);
+
+    void setId(int id);
 
     bool operator==(const DVD &rhs) const;
 
     int getId() const;
 };
-
 
 #endif //DVD_RENTAL_DVD_H

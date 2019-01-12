@@ -1,6 +1,6 @@
-//
-// Created by klaudia on 01.12.18.
-//
+/*
+ *  Pool of movie genres used for DVD's descriptions.
+ */
 
 #ifndef DVD_RENTAL_MOVIEGENRE_H
 #define DVD_RENTAL_MOVIEGENRE_H
@@ -17,22 +17,12 @@ enum Genre {
     Fantasy,
     Historical,
     Horror,
-    Magical_realism,
-    Mystery,
-    Paranoid,
-    Fiction,
-    Philosophical,
     Political,
     Romance,
-    Saga,
     Satire,
     Science_fiction,
-    Social,
-    Speculative,
     Thriller,
-    Urban,
-    Western,
+    Western
 };
-
 
 #endif //DVD_RENTAL_MOVIEGENRE_H

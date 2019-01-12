@@ -1,0 +1,1 @@
+{name:klaudia,surname:bednarz,information:Przekroczono_czas_wypozyczenia,id:0,toPayForKeeping:0.200000,maps :{0:43_ }}

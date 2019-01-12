@@ -1,7 +1,3 @@
-//
-// Created by klaudia on 01.12.18.
-//
-
 #include <iostream>
 #include "MovieBase.h"
 
@@ -14,7 +10,8 @@ void MovieBase::addToBase(DVD movie) {
 
 
 void MovieBase::removeFromBase(int id) {
-    base.erase(id);
+    if(base.at(id).getStatus()==booked) std::cout << "No such DVD in store. It's rented."<< std::endl;
+    else base.erase(id);
 }
 
 std::vector<DVD> MovieBase::findByStatus(Status status) {
@@ -44,7 +41,3 @@ DVD &MovieBase::findById(int id) {
 const std::map<int, DVD> &MovieBase::getBase() const {
     return base;
 }
-
-
-
-

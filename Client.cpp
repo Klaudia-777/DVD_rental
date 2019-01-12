@@ -1,20 +1,16 @@
-//
-// Created by klaudia on 05.12.18.
-//
-
 #include "Client.h"
 
+static int incrementer = 0;  // static variable representing id generator
 
-static int incrementer = 0;
-
-Client::Client(const std::string &name, const std::string &surname) : name(name),
-                                                                      surname(surname) {  //---------obiekt tworzymy przy pierwszym wypozyczeniu,
-    this->name = name;                                                                      //-------pozniej pytamy o id i szukamy w bazie
+Client::Client(const std::string &name, const std::string &surname, int id) : name(name),
+                                                                              surname(surname),
+                                                                              id(id) {  // object Client is created at the first rental
+    this->name = name;                                                                    // when object Client already is in the base, we ask for his id
     this->surname = surname;
     rented = {};
     toPayForKeeping = 0.0;
     information = "";
-    id = incrementer++;
+    this->id = id;
 }
 
 int Client::getId() const {
@@ -56,10 +52,34 @@ void Client::addPayment(double toPay) {
     this->toPayForKeeping += toPay;
 }
 
+void Client::setInformation(const std::string &information) {
+    Client::information = information;
+}
+
+const std::string &Client::getInformation() const {
+    return information;
+}
+
 double Client::getToPayForKeeping() const {
     return toPayForKeeping;
 }
 
-void Client::setInformation(const std::string &information) {
-    Client::information = information;
+void Client::setName(const std::string &name) {
+    Client::name = name;
 }
+
+void Client::setSurname(const std::string &surname) {
+    Client::surname = surname;
+}
+
+void Client::setRented(const std::map<int, int> &rented) {
+    Client::rented = rented;
+}
+
+void Client::setId(int id) {
+    Client::id = id;
+}
+
+Client::Client() {}
+
+

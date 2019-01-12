@@ -1,6 +1,7 @@
-//
-// Created by klaudia on 01.12.18.
-//
+/*
+ *  Database with access methods
+ *  storing DVDs available in rental.
+ */
 
 #ifndef DVD_RENTAL_MOVIEBASE_H
 #define DVD_RENTAL_MOVIEBASE_H
@@ -15,8 +16,8 @@
 class MovieBase {
 
 private:
-    std::map<int, DVD> base;
-
+    std::map<int, DVD> base;  // database of movies implemented as map in which
+                              // key-unique DVD's id, value- corresponding DVD object
 public:
 
     MovieBase();
@@ -33,9 +34,6 @@ public:
 
     DVD &findById(int id);
 
-
-
 };
-
 
 #endif //DVD_RENTAL_MOVIEBASE_H

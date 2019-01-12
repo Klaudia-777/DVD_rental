@@ -1,10 +1,10 @@
-//
-// Created by klaudia on 01.12.18.
-//
+/*
+ *  Service class implementing methods responsible
+ *  for the entire rental logic.
+ */
 
 #ifndef DVD_RENTAL_RENTALSYSTEM_H
 #define DVD_RENTAL_RENTALSYSTEM_H
-
 
 #include "DVD.h"
 #include "MovieBase.h"
@@ -25,14 +25,13 @@ public:
 
     void displayAvailableDVDs(std::vector<DVD> vec);
 
-    void display(bool which);
+    void display(bool which);       // displays stored (1) or rented  (0) DVDs
 
-    std::vector<DVD> filterGenre(Genre genre);
+    std::vector<DVD> filterByGenre(Genre genre);
 
     MovieBase &getMovieBase();
 
     ClientBase &getClientBase();
 };
-
 
 #endif //DVD_RENTAL_RENTALSYSTEM_H

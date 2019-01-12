@@ -1,31 +1,19 @@
-//
-// Created by klaudia on 09.12.18.
-//
-
-#include "interface.h"
+#include "InterfaceController.h"
 #include "DVD.h"
 #include "MovieBase.h"
 #include "RentalService.h"
 #include "Status.h"
 #include "movieGenre.h"
+#include "globalFunctions.h"
 #include <cstdlib>
 #include <iostream>
 
 using namespace std;
 
-
-Genre stringToGenre(string genre) {
-    if (genre == "Action") return Action;
-    else if (genre == "Adventure") return Adventure;
-    else if (genre == "Comedy") return Comedy;
-    else if (genre == "Crime") return Crime;
-    else if (genre == "Drama") return Drama;
-    else if (genre == "Fantasy") return Fantasy;
-    else if (genre == "Historical") return Historical;  // -------------> itd dopisac wszystko z movieGenre.h
-}
+InterfaceController::InterfaceController(const RentalService &rent) : rent(rent) {}
 
 
-void addNewDVDToBase(RentalService &rent) {
+void InterfaceController::addNewDVDToBase() {
     string genre, title;
     int price;
     cout << "Add new DVD to base." << endl;
@@ -35,11 +23,14 @@ void addNewDVDToBase(RentalService &rent) {
     cin >> title;
     cout << "Enter price:" << endl;
     cin >> price;
-    DVD movie(inStore, stringToGenre(genre), title, price);
+    int id;
+    if(!rent.getMovieBase().getBase().empty()) id=((rent.getMovieBase().getBase().end())->first);
+    else id=0;
+    DVD movie(inStore, stringToGenre(genre), title, price,id);
     rent.getMovieBase().addToBase(movie);
 }
 
-void removeDVDFromBase(RentalService &rent) {
+void InterfaceController::removeDVDFromBase() {
     int DVDsId;
     cout << "Remove DVD from base." << endl;
     cout << "Enter id:" << endl;
@@ -47,12 +38,12 @@ void removeDVDFromBase(RentalService &rent) {
     rent.getMovieBase().removeFromBase(DVDsId);
 }
 
-void addNewClient(RentalService &rent) {
+void InterfaceController::addNewClient() {
     cout << "Add new client." << endl;
     rent.getClientBase().newClient();
 }
 
-void removeClient(RentalService &rent) {
+void InterfaceController::removeClient() {
     int id;
     cout << "Remove client from base." << endl;
     cout << "Enter clients id:" << endl;
@@ -60,7 +51,7 @@ void removeClient(RentalService &rent) {
     rent.getClientBase().removeFromBase(id);
 }
 
-void rentDVD(RentalService &rent) {
+void InterfaceController::rentDVD() {
     int DVDsId;
     cout << "Rent a DVD." << endl;
     cout << "Enter DVD's id:" << endl;
@@ -68,7 +59,7 @@ void rentDVD(RentalService &rent) {
     rent.rentDVD(DVDsId);
 }
 
-void returnDVD(RentalService &rent) {
+void InterfaceController::returnDVD() {
     int DVDsId;
     cout << "Return a DVD." << endl;
     cout << "Enter DVD's id:" << endl;
@@ -76,28 +67,33 @@ void returnDVD(RentalService &rent) {
     rent.returnDVD(DVDsId);
 }
 
-void findByGenre(RentalService &rent) {
+void InterfaceController::findByGenre() {
     string genre;
     cout << "Find by genre." << endl;
     cout << "Enter a genre:" << endl;
     cin >> genre;
-    rent.filterGenre(stringToGenre(genre));
+    rent.filterByGenre(stringToGenre(genre));
 }
 
-void displayAvailableDVDs(RentalService &rent) {
+void InterfaceController::displayAvailableDVDs() {
     cout << "Available DVDs:" << endl;
     rent.display(1);
 }
 
-void displayRentedDVDs(RentalService &rent) {
+void InterfaceController::displayRentedDVDs() {
     cout << "Rented DVDs:" << endl;
     rent.display(0);
 }
 
-void displayClientsData(RentalService &rent) {
+void InterfaceController::displayClientsData() {
     int id;
     cout << "Display client's data." << endl;
     cout << "Enter client's id:" << endl;
     cin >> id;
     rent.getClientBase().showClientsData(id);
 }
+
+RentalService &InterfaceController::getRent() {
+    return rent;
+}
+

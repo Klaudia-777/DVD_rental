@@ -1,7 +1,3 @@
-//
-// Created by klaudia on 05.12.18.
-//
-
 #include <iostream>
 #include "ClientBase.h"
 #include "MovieBase.h"
@@ -33,14 +29,18 @@ void ClientBase::newClient() {
     std::cin >> name;
     std::cout << "Enter client's surname:" << std::endl;
     std::cin >> surname;
-    Client client(name, surname);
+    int id;
+    if (!base.empty()) id = ((base.end())->first);
+    else id = 0;
+    Client client(name, surname, id);
     std::cout << "New client's id: " << client.getId() << std::endl;
     addToBase(client);
 }
 
 void ClientBase::rentDVD(int DVDId) {
     bool isNew;
-    std::cout << "New client?" << std::endl;           //----------------enter 1 -> new client or 0 -> client already in base
+    std::cout << "New client? (1-YES, 0-NO)"
+              << std::endl;           //----------------enter 1 -> new client or 0 -> client already in base
     std::cin >> isNew;
     if (isNew) newClient();
     int id = 0;
